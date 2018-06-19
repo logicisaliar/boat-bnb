@@ -7,8 +7,7 @@ class Boat < ApplicationRecord
   validates :boat_type, presence: true
   validates :address, presence: true
   validates :price_day, presence: true
-  validates :name, presence: true
-  validates :photo, presence: true
- mount_uploader :photo, PhotoUploader
+  validates :name, presence: true, uniqueness: true
+  mount_uploader :photo, PhotoUploader, presence: true
 
 end
