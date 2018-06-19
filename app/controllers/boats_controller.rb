@@ -1,5 +1,12 @@
 class BoatsController < ApplicationController
 
+  def index
+    # list the boats of the current user
+    # @boats = Boat.where(user_id: current_user.id)
+    @boats = current_user.owned_boats
+  end
+
+
   def new
     @boat = Boat.new
     @boat.user = current_user
@@ -9,7 +16,7 @@ class BoatsController < ApplicationController
     @boat = Boat.new(boat_params)
     @boat.user = current_user
     if @boat.save
-      redirect_to host_boats_path
+      redirect_to boats_path
     else
       render :new
     end
