@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 # owned boats
-  has_many :owned_boats, foreign_key: "user_id", class_name: "Boat"
+  has_many :owned_boats, foreign_key: "user_id", class_name: "Boat", dependent: :destroy
 
 # booked boats
-  has_many :bookings
-  has_many :booked_boats, through: :bookings, source: :boat
+  has_many :bookings, dependent: :destroy
+  has_many :booked_boats, through: :bookings, source: :boat, dependent: :destroy
 end
