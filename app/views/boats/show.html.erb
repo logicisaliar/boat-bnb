@@ -4,5 +4,6 @@
 <p> Address: <%= @boat.address %></p>
 <p> Description: <%= @boat.description %></p>
 <p> Price: <%= @boat.price_day %></p>
+<p> <%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %> </p>
 
 <%= link_to "List of boats", boats_path  %>
