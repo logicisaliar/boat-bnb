@@ -1,6 +1,21 @@
 class BoatsController < ApplicationController
   before_action :set_boat, only: [:show, :edit, :update, :destroy]
 
+  def search_by_city
+    address = params[:city_name]
+    @boats = Boat.near(address, 20)
+    raise
+    # @boats = Boat.where.not(lat: nil, lon: nil)
+    @markers = @boats.map do |boat|
+      {
+        lat: boat.lat,
+        lng: boat.lon#,
+        # infoWindow: { content: render_to_string(partial: "/boats/map_box", locals: { boat: flat }) }
+      }
+    end
+
+  end
+
   def index
     # list the boats of the current user
     # @boats = Boat.where(user_id: current_user.id)
