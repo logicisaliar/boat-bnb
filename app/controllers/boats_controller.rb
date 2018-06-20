@@ -7,6 +7,9 @@ class BoatsController < ApplicationController
     @boats = current_user.owned_boats
   end
 
+  def show_user
+  end
+
   def show
   end
 
