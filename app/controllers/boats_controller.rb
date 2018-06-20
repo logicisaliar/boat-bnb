@@ -1,4 +1,6 @@
 class BoatsController < ApplicationController
+skip_before_action :authenticate_user!, only: [:show, :index, :search_by_city]
+
 
   def search_by_city
     address = params[:city_name]
