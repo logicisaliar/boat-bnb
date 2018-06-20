@@ -7,3 +7,4 @@
 <p> <%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %> </p>
 
 <%= link_to "List of boats", boats_path  %>
+<%= link_to "Book it", new_boat_booking_path(@boat) %>
