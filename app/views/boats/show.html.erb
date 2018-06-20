@@ -1,3 +1,4 @@
+
 <h1><%=  @boat.name %> </h1>
 <p> Guests: <%= @boat.guests %></p>
 <p> Boat Type: <%= @boat.boat_type %></p>
@@ -6,5 +7,5 @@
 <p> Price: <%= @boat.price_day %></p>
 <p> <%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %> </p>
 
-<%= link_to "List of boats", boats_path  %>
-<%= link_to "Edit", new_boat_booking_path(@boat) %>
+<%= link_to "Book it", new_boat_booking_path(@boat)  %>
+

@@ -1,3 +1,4 @@
+
 <h1><%=  @boat.name %> </h1>
 <p> Guests: <%= @boat.guests %></p>
 <p> Boat Type: <%= @boat.boat_type %></p>
@@ -6,4 +7,7 @@
 <p> Price: <%= @boat.price_day %></p>
 <p> <%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %> </p>
 
-<%= link_to "Book it", boo  %>
+
+<%= link_to "List of boats", host_boats_path  %>
+<%= link_to "Edit", edit_host_boat_path(@boat) %>
+<%= link_to "Delete", host_boat_path(@boat), method: :delete, data:{ confirm: "Are you sure?"} %>

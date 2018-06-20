@@ -1,0 +1,9 @@
+<h1>your boats:</h1>
+
+<% @boats.each do |boat| %>
+  <h2><%= boat.name %></h2>
+  <p><%= boat.description %></p>
+<%= link_to "Edit" , edit_host_boat_path(boat) %>
+<%= link_to "Delete" , host_boat_path(boat), method: :delete, data: { confirm: "Are you sure?"} %>
+<% end %>
+
