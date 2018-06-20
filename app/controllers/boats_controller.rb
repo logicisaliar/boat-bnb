@@ -13,7 +13,6 @@ class BoatsController < ApplicationController
   end
 
   def index
-
     @boats = Boat.all
   end
 
