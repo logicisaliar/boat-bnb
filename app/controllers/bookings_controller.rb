@@ -1,6 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_boat
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new
     @booking.user = current_user
