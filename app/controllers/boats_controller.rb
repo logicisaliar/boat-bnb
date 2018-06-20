@@ -6,7 +6,8 @@ class BoatsController < ApplicationController
     @markers = @boats.map do |boat|
       {
         lat: boat.latitude,
-        lng: boat.longitude
+        lng: boat.longitude,
+        infoWindow: { content: boat.name}
       }
     end
   end
