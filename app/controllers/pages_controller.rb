@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @boats = Boat.all
-    @boat = Boat.new
   end
 
   def become_host
