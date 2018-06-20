@@ -3,8 +3,8 @@ class BoatsController < ApplicationController
 
   def search_by_city
     address = params[:city_name]
-    @boats = Boat.near(address, 20)
     raise
+    @boats = Boat.near(address, 20)
     # @boats = Boat.where.not(lat: nil, lon: nil)
     @markers = @boats.map do |boat|
       {
