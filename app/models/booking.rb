@@ -16,7 +16,7 @@ class Booking < ApplicationRecord
       counter = 1
     else
       occupied.each_with_index do |booking, index|
-        if index == 0 && (end_date <= booking.start_date)
+        if index == 0 && ((end_date <= booking.start_date) || (booking.end_date <= start_date))
           counter = 1
           break
           if index == last_booking_index && (booking.end_date <= start_date)
