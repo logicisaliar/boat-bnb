@@ -1,0 +1,11 @@
+<% boat = Boat.last %>
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+
+  <div class="card-category"><% boat.boat_type %></div>
+  <div class="card-description">
+    <h2><% boat.name %></h2>
+    <p><% boat.description %></p>
+  </div>
+  <%= link_to boat.address, boat_path(boat), :class => "card-link" %>
+
+</div>
