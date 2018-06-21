@@ -21,9 +21,6 @@ class Host::BoatsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @boat.destroy
     redirect_to host_boats_path
