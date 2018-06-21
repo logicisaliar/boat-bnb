@@ -1,22 +1,16 @@
 version: 2
 jobs:
   build:
-    parallelism: 3
-
     docker:
       - image: circleci/ruby:2.4.4-node
         environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
-          BUNDLE_PATH: vendor/bundle
-          PG_HOST: localhost
-          PG_USER: postgres
-          RACK_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
           RAILS_ENV: test
-      - image: postgres:9.6
+      - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_DB: nowserving_test
+          POSTGRES_DB: boat-bnb_test
           POSTGRES_PASSWORD: ""
 
     steps:
