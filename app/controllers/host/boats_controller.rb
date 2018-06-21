@@ -6,6 +6,10 @@ class Host::BoatsController < ApplicationController
     @boats = current_user.owned_boats
   end
 
+  def show
+    authorize @boat
+  end
+
   def new
     @boat = Boat.new
     @boat.user = current_user
@@ -36,7 +40,7 @@ class Host::BoatsController < ApplicationController
   def update
     authorize @boat
     if @boat.update(boat_params)
-      redirect_to host_boats_path
+      redirect_to host_boat_path(@boat)
     else
       render :edit
     end
