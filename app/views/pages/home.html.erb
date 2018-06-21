@@ -19,12 +19,11 @@
   <h2 class="text-center">Boats around the world</h2>
   <div class="cards">
     <div class="row">
-      <% @boats.each do |b| %>
+      <% @boats.each do |boat| %>
         <div class="col-sm-4">
           <div class="card card-hover">
-            <div class="card-body" style=<%= bg_style(b) %>>
-            </div>
-
+            <%= photo_url = cl_image_path(boat.photo_url, height: 300, width: 400, crop: :fill) %>
+            <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(<%= photo_url %>)"></div>
             <div class="card-footer">
               <h5 class="card-title"><%= b.name %></h5>
               <p class="card-text"><%= truncate(b.description, length: 40)%></p>
