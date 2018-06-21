@@ -1,6 +1,7 @@
 class Host::BoatsController < ApplicationController
   before_action :set_boat, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @boats = current_user.owned_boats
   end
@@ -18,6 +19,9 @@ class Host::BoatsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def destroy
