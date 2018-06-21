@@ -1,20 +1,23 @@
 version: 2
 jobs:
   build:
+    parallelism: 3
+
     docker:
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.4.4-node
         environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
           PG_HOST: localhost
-          PG_PORT: 5432
-          PG_PASSWORD: ubuntu
-          PG_USER: ubuntu
+          PG_USER: postgres
           RACK_ENV: test
           RAILS_ENV: test
       - image: postgres:9.6
         environment:
-          POSTGRES_USER: ubuntu
+          POSTGRES_USER: postgres
           POSTGRES_DB: nowserving_test
-    working_directory: ~/repo
+          POSTGRES_PASSWORD: ""
 
     steps:
       - checkout
@@ -24,6 +27,7 @@ jobs:
             - gem-cache-{{ checksum "Gemfile.lock" }}
             - gem-cache
             - gem-cache
+
       - run:
           name: Install Yarn
           command: |
@@ -34,6 +38,7 @@ jobs:
             sudo apt-get update
             sudo apt-get --no-install-recommends install nodejs yarn
             yarn --version
+
       - run:
           name: Install Ruby Dependencies
           command: gem install bundler && bundle install --jobs=4 --retry=3 --path vendor/bundle
@@ -47,7 +52,6 @@ jobs:
             - yarn-cache
             - yarn-cache
       - run: yarn install
-
       - save_cache:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
