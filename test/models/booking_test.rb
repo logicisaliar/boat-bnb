@@ -2,28 +2,30 @@ require 'test_helper'
 
 class BookingTest < ActiveSupport::TestCase
   def setup
-    @user = User.create(
+    @user = User.create!(
       email: "peter.potamus@example.com",
       password: "password",
       first_name: "Peter",
       last_name: "Potamus"
     )
-    @user2 = User.create(
+    @user2 = User.create!(
       email: "marcelo.polli@example.com",
       password: "password",
       first_name: "Marcelo",
       last_name: "De Polli"
     )
-    @boat = Boat.create(
+    @boat = Boat.new(
       user_id: @user.id,
       name: "La Serenisima",
       guests: 6,
       boat_type: "yatch",
       address: "Tigre",
       price_day: 362,
-      description: "A really nice boat"
+      description: "A really nice boat",
     )
-    @previous_booking = Booking.create(
+    @boat.remote_photo_url = "test/fixtures/files/boat_photo.png"
+    @boat.save!
+    @previous_booking = Booking.create!(
       user_id: @user2.id,
       boat_id: @boat.id,
       start_date: Date.new(2018, 6, 22),
