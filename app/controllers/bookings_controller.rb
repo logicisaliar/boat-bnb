@@ -33,3 +33,8 @@ class BookingsController < ApplicationController
 
 end
 
+# {
+#   boat
+#   date - today - today + 1 years
+#   status
+# }
