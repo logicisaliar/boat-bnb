@@ -1,50 +1,66 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-       - image: circleci/ruby:2.4.4-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
+      - image: circleci/ruby:2.4.4-node-browsers
+        environment:
+          PG_HOST: localhost
+          PG_PORT: 5432
+          PG_PASSWORD: ubuntu
+          PG_USER: ubuntu
+          RACK_ENV: test
+          RAILS_ENV: test
+      - image: postgres:9.6
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: nowserving_test
     working_directory: ~/repo
 
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - gem-cache-{{ checksum "Gemfile.lock" }}
+            - gem-cache
+            - gem-cache
       - run:
-          name: install dependencies
+          name: Install Yarn
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee -a /etc/apt/sources.list
+            sudo apt-get --no-install-recommends install apt-transport-https
+            curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+            sudo apt-get update
+            sudo apt-get --no-install-recommends install nodejs yarn
+            yarn --version
+      - run:
+          name: Install Ruby Dependencies
+          command: gem install bundler && bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache
+            - yarn-cache
+      - run: yarn install
 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # run tests!
+      - save_cache:
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn-cache
       - run:
-          name: run tests
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Set up DB
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "test/**/*_test.rb" | circleci tests split --split-by=timings)
+            bundle exec rake db:create db:schema:load --trace
+      - run: bin/webpack
 
-            rails test $TEST_FILES
+      - run:
+          name: Run tests
+          command: bundle exec rake test
