@@ -1,6 +1,7 @@
 class Host::BoatsController < ApplicationController
   before_action :set_boat, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @boats = policy_scope(Boat).order(created_at: :desc)
     @boats = current_user.owned_boats
