@@ -1,4 +1,6 @@
 class BoatsController < ApplicationController
+skip_before_action :authenticate_user!, only: [:show, :index, :search_by_city]
+
 
   def search_by_city
     address = params[:city_name]
@@ -18,6 +20,7 @@ class BoatsController < ApplicationController
 
   def show
     @boat = Boat.find(params[:id])
+    authorize @boat
   end
 end
 

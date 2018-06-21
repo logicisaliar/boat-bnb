@@ -7,22 +7,25 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <div class="navbar-right-elements">
-      <%= link_to "Become a Host", become_host_path %>
-      <%= link_to "Log In", new_user_session_path  %>
-    </div>
-    <!-- Profile picture with dropdown list -->
+      <% if user_signed_in? %>
+  <!-- Profile picture with dropdown list -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
         <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">My Boats</a></li>
+          <%= link_to "My boats", host_boats_path %>
           <li><a href="#">Requests</a></li>
           <li><a href="#">Bookings History</a></li>
           <%= link_to "Log Out", destroy_user_session_path , method: :delete, data:{ confirm: "Are you sure you want to log out?"} %>
-
         </ul>
       </div>
     </div>
+      <% else %>
+      <%= link_to "Become a Host", become_host_path %>
+      <%= link_to "Log In", new_user_session_path  %>
+      <% end %>
+    </div>
+
   </div>
 
   <!-- Dropdown appearing on mobile only -->

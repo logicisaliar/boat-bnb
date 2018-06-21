@@ -4,6 +4,8 @@ ruby '2.4.4'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 
+gem 'pundit'
+
 gem 'bootsnap', require: false
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
