@@ -1,21 +1,7 @@
 <%= simple_form_for [:host, @boat] do |f| %>
   <%= f.input :name %>
   <%= f.input :guests %>
-
   <%= f.input :boat_type, collection: ["Yacht", "Canoon", "Boat"] %>
-
-
-  <%#= f.label :boat_type %>
-
-  <%#= f.select
-  <select name="boat[boat_type]">
-  <option value="1">Yacht</option>
-  <option value="2">Canoon</option>
-  <option value="3">Boat</option>
-</select> %>
-
-
-
   <%= f.input :address %>
   <%= f.input :description %>
   <%= f.input :price_day %>
