@@ -66,7 +66,7 @@ t = 0
     # Asign the boat to a User
     boat.user = user
     boat.save
-    boat.remote_photo_url = "http://res.cloudinary.com/dz9qskljz/image/upload/v1529527074/#{i + 1}.jpg"
+    boat.remote_photo_url = "http://res.cloudinary.com/dz9qskljz/image/upload/v1529592427/seeds2/#{i + 1}.jpg"
     boat.save
     i += 1
   end
