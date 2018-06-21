@@ -20,6 +20,7 @@ skip_before_action :authenticate_user!, only: [:show, :index, :search_by_city]
 
   def show
     @boat = Boat.find(params[:id])
+    authorize @boat
   end
 end
 

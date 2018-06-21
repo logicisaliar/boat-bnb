@@ -9,5 +9,12 @@
 
 
 <%= link_to "List of boats", host_boats_path  %>
+
+<% if policy(@boat).edit? %>
 <%= link_to "Edit", edit_host_boat_path(@boat) %>
+<% end %>
+
+<% if policy(@boat).destroy? %>
 <%= link_to "Delete", host_boat_path(@boat), method: :delete, data:{ confirm: "Are you sure?"} %>
+<% end %>
+
