@@ -50,7 +50,7 @@ class Host::BoatsController < ApplicationController
   private
 
   def boat_params
-    params.require(:boat).permit(:name, :guests, :boat_type, :address, :price_day, :description, :photo_cache)
+    params.require(:boat).permit(:name, :guests, :boat_type, :address, :price_day, :description,:photo_cache, :photo)
   end
 
   def set_boat
