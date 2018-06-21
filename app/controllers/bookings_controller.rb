@@ -3,17 +3,20 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def new
     @booking = Booking.new
     @booking.user = current_user
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.boat_id = @boat.id
+    @booking.boat = @boat
+    authorize @booking
     if @booking.save
       redirect_to boat_booking_path(boat_id: @boat.id, id: @booking.id)
     else
@@ -32,9 +35,3 @@ class BookingsController < ApplicationController
   end
 
 end
-
-# {
-#   boat
-#   date - today - today + 1 years
-#   status
-# }
