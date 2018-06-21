@@ -4,3 +4,12 @@
 @import "footer";
 @import "banner";
 @import "card";
+@import 'button';
+@import 'searchbar';
+
+
+.home-body {
+  margin: 0;
+  margin-bottom: 100px;
+  font-family: 'Varela Round', sans-serif;
+}

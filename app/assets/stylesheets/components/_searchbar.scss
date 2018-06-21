@@ -1,0 +1,28 @@
+.banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px auto;
+  margin-top: 30px;
+  font-family: 'Varela Round', sans-serif;
+
+}
+
+.banner-content h1 {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 80px;
+
+}
+
+.banner-content p {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+
+.input-group {
+  text-align:center;
+}
