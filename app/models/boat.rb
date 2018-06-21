@@ -11,6 +11,7 @@ class Boat < ApplicationRecord
  validates :address, presence: true
  validates :price_day, presence: true
  validates :name, presence: true, uniqueness: true
- mount_uploader :photo, PhotoUploader, presence: true
+ validates :photo, presence: true
+ mount_uploader :photo, PhotoUploader
 
 end
