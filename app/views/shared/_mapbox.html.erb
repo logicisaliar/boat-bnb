@@ -1,0 +1,14 @@
+<div class="mapmarkerinfo">
+  <%= link_to boat_path(boat) do %>
+
+  <div class="banner" id="banner-map" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url('<%= cl_image_path boat.photo if boat.photo? %>'); background-size: cover; width: 200px; height: 100px">
+    <div class="card-img" >
+    </div>
+    <div>
+      <p>Price oer day - €<%= boat.price_day %> </p>
+      <p><%= truncate(boat.description,length: 30) %></p>
+      <p><%= boat.boat_type %> - <%= boat.guests %> guests</p>
+    </div>
+  </div>
+  <% end %>
+</div>
