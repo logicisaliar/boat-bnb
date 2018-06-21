@@ -1,0 +1,64 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.4-node
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: boat-bnb_test
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - gem-cache-{{ checksum "Gemfile.lock" }}
+            - gem-cache
+            - gem-cache
+
+      - run:
+          name: Install Yarn
+          command: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee -a /etc/apt/sources.list
+            sudo apt-get --no-install-recommends install apt-transport-https
+            curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+            sudo apt-get update
+            sudo apt-get --no-install-recommends install nodejs yarn
+            yarn --version
+
+      - run:
+          name: Install Ruby Dependencies
+          command: gem install bundler && bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache
+            - yarn-cache
+      - run: yarn install
+      - save_cache:
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn-cache
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+      - run: bin/webpack
+
+      - run:
+          name: Run tests
+          command: bundle exec rake test

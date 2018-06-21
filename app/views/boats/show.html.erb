@@ -5,7 +5,7 @@
 <p> Address: <%= @boat.address %></p>
 <p> Description: <%= @boat.description %></p>
 <p> Price: <%= @boat.price_day %></p>
-<p> <%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %> </p>
+<%= cl_image_tag(@boat.photo, height: 300, width: 400, crop: :fill) %>
 
 <%= link_to "Book it", new_boat_booking_path(@boat)  %>
 

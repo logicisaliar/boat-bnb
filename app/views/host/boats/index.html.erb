@@ -1,8 +1,12 @@
-<h1>your boats:</h1>
+<h1>Your boats:</h1>
 
 <% @boats.each do |boat| %>
   <h2><%= boat.name %></h2>
   <p><%= boat.description %></p>
+
+  <% if policy(boat).show? %>
+    <%= link_to "View details" , host_boat_path(boat) %>
+  <% end %>
 
   <% if policy(boat).edit? %>
     <%= link_to "Edit" , edit_host_boat_path(boat) %>
@@ -14,3 +18,5 @@
 
 <% end %>
 
+<br>
+<%= link_to "New boat" , new_host_boat_path %>

@@ -1,6 +1,7 @@
 <%= simple_form_for [@boat, @booking] do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.hidden_field :boat_id, value: @boat.id %>
-  <%= f.button :submit %>
+<%= f.error :base %>
+<%= f.input :start_date %>
+<%= f.input :end_date %>
+<%= f.hidden_field :boat_id, value: @boat.id %>
+<%= f.button :submit %>
 <% end %>

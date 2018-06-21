@@ -21,6 +21,10 @@ class BoatPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def search_by_city?
+    true
+  end
+
   private
 
   def user_is_owner?

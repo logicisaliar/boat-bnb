@@ -1,0 +1,36 @@
+
+#banner-host {
+  background-image: url(https://res.cloudinary.com/logicisaliar/image/upload/v1529615168/Money.jpg);
+}
+
+.head {
+  justify-content: center;
+  align-items: center;
+  font-family: arial;
+  padding: 50px;
+  h1 {
+    background-image: linear-gradient(rgba(150,150,150,0.3), rgba(100,100,100,0.2));
+
+    font-size: 64px;
+  }
+}
+
+.host-box {
+  justify-content: space-between;
+  border: 0.1px solid white;
+  padding: 20px;
+  box-shadow: 1px 1px 5px;
+  height: 200px;
+  border-radius: 3px;
+  // background-color: rgba(200,200,200,0.8);
+  list-style-position: inside;
+  background-image: linear-gradient(rgba(150,150,150,0.3), rgba(100,100,100,0.2));
+  font-size: 20px;
+  margin: 20px;
+}
+
+.back-black {
+  margin-top: 100px;
+  width: 100%vw;
+  background-color: black;
+}
