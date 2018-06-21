@@ -22,12 +22,12 @@
       <% @boats.each do |boat| %>
         <div class="col-sm-4">
           <div class="card card-hover">
-            <%= photo_url = cl_image_path(boat.photo_url, height: 300, width: 400, crop: :fill) %>
-            <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(<%= photo_url %>)"></div>
+            <% photo_url = cl_image_path(boat.photo_url, height: 300, width: 400, crop: :fill) %>
+            <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('<%= photo_url %>')"></div>
             <div class="card-footer">
-              <h5 class="card-title"><%= b.name %></h5>
-              <p class="card-text"><%= truncate(b.description, length: 40)%></p>
-              <%= link_to "more information", boat_path(b), class: 'btn btn-primary' %>
+              <h5 class="card-title"><%= boat.name %></h5>
+              <p class="card-text"><%= truncate(boat.description, length: 40)%></p>
+              <%= link_to "more information", boat_path(boat), class: 'btn btn-primary' %>
             </div>
           </div>
         </div>
