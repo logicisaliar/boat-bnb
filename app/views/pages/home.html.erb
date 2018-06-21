@@ -1,7 +1,6 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://res.cloudinary.com/logicisaliar/image/upload/v1529437712/Boat.jpg');">
   <div class="banner-content">
     <h1>Boat (BNB)</h1>
-    <h3>Beer N Beaches</h3>
     <p>Learn to party with us</p>
     <div class="card">
       <form action="city_path">
@@ -16,13 +15,24 @@
   </div>
 </div>
 
-<% @boats.each do |b| %>
-<div class="card" style="width: 18rem;">
-  <%= cl_image_tag b.photo, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
-  <div class="card-body">
-    <h5 class="card-title"><%= b.name %></h5>
-    <p class="card-text"><%= b.description %></p>
-    <%= link_to "more information", boat_path(b), class: 'btn btn-primary' %>
+<div class="container">
+  <h2 class="text-center">Boats around the world</h2>
+  <div class="cards">
+    <div class="row">
+      <% @boats.each do |b| %>
+        <div class="col-sm-4">
+          <div class="card card-hover">
+            <div class="card-body" style=<%= bg_style(b) %>>
+            </div>
+
+            <div class="card-footer">
+              <h5 class="card-title"><%= b.name %></h5>
+              <p class="card-text"><%= truncate(b.description, length: 40)%></p>
+              <%= link_to "more information", boat_path(b), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>             
+    </div>
   </div>
 </div>
-<% end %>
