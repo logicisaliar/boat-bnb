@@ -8,7 +8,7 @@ skip_before_action :authenticate_user!, only: [:show, :index, :search_by_city]
     address = params[:city_name]
     @boats = Boat.near(address, 20)
     @markers = @boats.map do |boat|
-      # authorize boat
+    authorize boat
       {
         lat: boat.latitude,
         lng: boat.longitude,
