@@ -1,4 +1,4 @@
-<h1>Summery of booking:</h1>
+<h1>Your booking:</h1>
 
 <p>BOAT: <%= @boat.name %></p>
 <p> From: <%= @booking.start_date %></p>
@@ -8,9 +8,3 @@
 <% total_price = @boat.price_day * days %>
 <p>TOTAL: $ <%= total_price %> </p>
 <p>**************************************</p>
-<br>
-<br>
-<br>
-<!-- this should redirect to the checkout/payment page we dont even have -->
-<a href="">Confirm booking</a>
-
