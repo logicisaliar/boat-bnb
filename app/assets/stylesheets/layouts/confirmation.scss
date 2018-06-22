@@ -1,0 +1,38 @@
+.confirmation {
+  text-align: center;
+  background-color: rgba(0,0,0,0.02);
+  box-shadow: 1px 1px 5px;
+  border: 1.5px solid #4F7CAC;
+  border-radius: 2px;
+
+  h1{
+    color:#4F7CAC;
+  }
+}
+
+
+
+#photo-conf {
+  position: relative;
+  background-size: cover;
+  height: 200px;
+  width: 320px;
+  margin: 15px;
+  border: 1.5px solid #4F7CAC;
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  }
+/*
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+ */
