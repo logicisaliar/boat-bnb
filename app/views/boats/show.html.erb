@@ -1,18 +1,22 @@
 
+<div class="row">
 <div class="banner" id="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @boat.photo, height: 300, width: 400, crop: :fill %>');">
 </div>
+  <div class="col-xs-12 col-md-4 col-md-offset-4">
+    <div id="card-show">
+      <div id="body-show">
+        <h1 class="card-title"><%=  @boat.name %> </h1>
+        <p class="card-text"> Guests: <%= @boat.guests %></p>
+        <p class="card-text"> Boat Type: <%= @boat.boat_type %></p>
+        <p class="card-text"> Address: <%= @boat.address %></p>
+        <p class="card-text"> Description: <%= @boat.description %></p>
+        <p class="card-text"> Price: <%= @boat.price_day %></p>
+        <%= link_to "Book it", new_boat_booking_path(@boat), class: "btn btn-success btn-block" %>
+        <br>
+        <%= link_to "Back Home", root_path, class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
 
-<div class="card" id="card-show">
-    <h1 class="card-title"><%=  @boat.name %> </h1>
-  <div id="body-show">
-    <p class="card-text"> Guests: <%= @boat.guests %></p>
-    <p class="card-text"> Boat Type: <%= @boat.boat_type %></p>
-    <p class="card-text"> Address: <%= @boat.address %></p>
-    <p class="card-text"> Description: <%= @boat.description %></p>
-    <p class="card-text"> Price: <%= @boat.price_day %></p>
-
-    <%= link_to "Book it", new_boat_booking_path(@boat)%>
-    <%= link_to "Back Home", root_path  %>
   </div>
 </div>
 
