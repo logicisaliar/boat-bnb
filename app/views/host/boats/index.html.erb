@@ -1,22 +1,31 @@
-<h1>Your boats:</h1>
-
-<% @boats.each do |boat| %>
-  <h2><%= boat.name %></h2>
-  <p><%= boat.description %></p>
-
-  <% if policy(boat).show? %>
-    <%= link_to "View details" , host_boat_path(boat) %>
-  <% end %>
-
-  <% if policy(boat).edit? %>
-    <%= link_to "Edit" , edit_host_boat_path(boat) %>
-  <% end %>
-
-  <% if policy(boat).destroy? %>
-    <%= link_to "Delete" , host_boat_path(boat), method: :delete, data: { confirm: "Are you sure?"} %>
-  <% end %>
-
-<% end %>
-
-<br>
-<%= link_to "New boat" , new_host_boat_path %>
+<h2 class="text-center">Your boats</h2>
+<div class="container">
+  <div class="cards">
+    <div class="row">
+      <% @boats.each do |boat| %>
+      <div class="col-sm-4">
+        <div class="card card-hover">
+          <% photo_url = cl_image_path(boat.photo_url, height: 300, width: 400, crop: :fill) %>
+          <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('<%= photo_url %>')"></div>
+          <div class="card-footer">
+            <h5 class="card-title"><%= boat.name %></h5>
+            <p class="card-text"><%= truncate(boat.description, length: 40)%></p>
+            <% if policy(boat).show? %>
+            <%= link_to "View details" , host_boat_path(boat), class: 'btn btn-primary' %>
+            <% end %>
+            <% if policy(boat).edit? %>
+            <%= link_to "Edit" , edit_host_boat_path(boat), class: 'btn btn-success' %>
+            <% end %>
+            <% if policy(boat).destroy? %>
+            <%= link_to "Delete" , host_boat_path(boat), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>             
+    </div>
+  </div>
+</div>
+<div class="text-center">
+<%= link_to " + New boat" , new_host_boat_path, class: 'btn btn-primary btn-lg' %>
+</div>
