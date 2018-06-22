@@ -1,10 +1,13 @@
 #banner-show {
   height: 400px;
+  background-size: cover;
 }
 
 #card-show {
-  margin-bottom: 300px;
+  margin-bottom: 50px;
+  margin-top: 50px;
   width: 700px;
+  display: flex;
   transition: all 0.3s ease;
 }
 
@@ -13,6 +16,6 @@ box-shadow: 1px 1px 3px grey;
 padding: 15px;
 }
 
-.card-title {
-  padding: 15px;
-}
+// .card-title {
+//   padding: 15px;
+// }
