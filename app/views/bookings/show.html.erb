@@ -1,10 +1,16 @@
-<h1>Your booking:</h1>
+<div class="container">
+  <div class="confirmation ">
 
-<p>BOAT: <%= @boat.name %></p>
-<p> From: <%= @booking.start_date %></p>
-<p> Until: <%= @booking.end_date %></p>
-<p>**************************************</p>
-<% days = (@booking.end_date - @booking.start_date).to_i %>
-<% total_price = @boat.price_day * days %>
-<p>TOTAL: $ <%= total_price %> </p>
-<p>**************************************</p>
+    <h1>Your booking:</h1>
+
+    <h2><%= @boat.name %></h2>
+    <% photo_url = cl_image_path(@boat.photo_url, height: 300, width: 400, crop: :fill) %>
+    <div id="photo-conf" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('<%= photo_url %>')"></div>
+
+    <p> From: <%= @booking.start_date %> </p>
+    <p> Until: <%= @booking.end_date %></p>
+    <% days = (@booking.end_date - @booking.start_date).to_i %>
+    <% total_price = @boat.price_day * days %>
+    <p>TOTAL: $ <%= total_price %> </p>
+  </div>
+</div>
