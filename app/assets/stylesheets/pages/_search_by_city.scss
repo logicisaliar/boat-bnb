@@ -4,11 +4,24 @@
 }
 
 #banner-map {
-  width: 200px;
-  height: 100px;
-  background-image: linear-gradient(rgba(150,150,150,0.6), rgba(100,100,100,0.2));
+  width: 400px;
+  height: 250px;
+  background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5));
   p {
-  color: white;
-  font-size: 8px;
+    color: white;
+    font-size: 18px;
+  }
+}
+
+.card-footer {
+  background-color: white;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  padding: 15px 15px;
+  p {
+    font-size: 15px;
+    font-weight: lighter;
+    color: #CCC;
   }
 }

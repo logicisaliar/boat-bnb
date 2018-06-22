@@ -32,14 +32,12 @@
   // align-items: center;
   // justify-content: space-between;
   padding: 15px 15px;
+  p {
+    font-size: 25px;
+    font-weight: lighter;
+    color: #CCC;
+  }
 }
-
-.card-footer p {
-  font-size: 13px;
-  font-weight: lighter;
-  color: #CCC;
-}
-
 .list-inline {
   list-style: none;
   display: inline-flex;
