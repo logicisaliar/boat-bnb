@@ -5,6 +5,12 @@ class BoatsController < ApplicationController
   def search_by_city
     address = params[:address]
     @boats = Boat.near(address, 2000)
+    @other_boats = []
+    Boat.all.each do |boat|
+      unless @boats.include?(boat)
+        @other_boats << boat
+      end
+    end
     @markers = @boats.map do |boat|
       authorize boat
       {
@@ -25,6 +31,5 @@ class BoatsController < ApplicationController
   end
 
 end
-
 
 
