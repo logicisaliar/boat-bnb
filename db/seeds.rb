@@ -21,7 +21,7 @@ EMAIL = %w(joti@design.com jash@fragance.com luli@on.com sebas@gmail.com marcelo
 FIRST_NAME = %w(Joti Jash Luli Sebas Marcelo)
 LAST_NAME = %w(Sempe Shah Lucanera Buffo DePolli)
 BOAT_TYPE = %w(yatch canoon boat)
-NAME = %w(Anastasia Antonus Monterey Victoria Leonardo Acalli Raffielina Isabel )
+NAME = %w(Anastasia Antonus Monterey Victoria Leonardo Acalli Raffielina Isabel Aloha)
 ADDRESS = [ "Puerto Madero", "Olivos", "Tigre", "Nordelta", "Puerto Madero", "Olivos", "Tigre", "Nordelta", "Puerto Madero", "Olivos"]
 DESCRIPTION = [
   "Your perfect match: sun & sea",
