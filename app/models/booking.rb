@@ -5,30 +5,16 @@ class Booking < ApplicationRecord
   validate :end_date_must_be_after_start_date
   validate :boat_must_be_available
 
+  scope :overlapping_with, ->(booking) do
+    where.not("end_date <= :start_date OR start_date >= :end_date", start_date: booking.start_date, end_date: booking.end_date)
+  end
+
   private
 
   def boat_must_be_available
-    counter = 0
-    occupied = self.boat.bookings
-    occupied.sort_by {|x| x.start_date}
-    last_booking_index = occupied.length - 1
-    if last_booking_index < 0
-      counter = 1
-    else
-      occupied.each_with_index do |booking, index|
-        if index == 0 && ((end_date <= booking.start_date) || (booking.end_date <= start_date))
-          counter = 1
-          break
-          if index == last_booking_index && (booking.end_date <= start_date)
-            counter = index
-            break
-          else (end_date <= booking.start_date) && (booking.end_date <= start_date)
-            counter = index
-            break
-          end
-        end
-        errors.add(:base, "Please select other dates") if counter == 0
-      end
+    overlapping_bookings = self.boat.bookings.overlapping_with(self)
+    if overlapping_bookings.any?
+      errors.add(:base, "Please select other dates")
     end
   end
 
