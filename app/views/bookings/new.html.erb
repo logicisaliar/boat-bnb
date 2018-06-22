@@ -1,7 +1,22 @@
-<%= simple_form_for [@boat, @booking] do |f| %>
-<%= f.error :base %>
-<%= f.input :start_date %>
-<%= f.input :end_date %>
-<%= f.hidden_field :boat_id, value: @boat.id %>
-<%= f.button :submit %>
-<% end %>
+<div class= "container">
+
+  <div class= "postal">
+    <h2><%= @boat.name %></h2>
+    <% photo_url = cl_image_path(@boat.photo_url, height: 300, width: 400, crop: :fill) %>
+    <div class="photo-postal" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('<%= photo_url %>')"></div>
+    <p><%= @boat.description %></p>
+  </div>
+
+  <div class= "postal">
+    <div id= "data-form" >
+      <%= simple_form_for [@boat, @booking] do |f| %>
+      <%= f.error :base %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+      <%= f.hidden_field :boat_id, value: @boat.id %>
+      <%= f.button :submit %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
