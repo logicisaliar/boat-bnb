@@ -1,0 +1,29 @@
+.booking-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.photo-postal {
+  position: relative;
+  background-size: cover;
+  height: 200px;
+  width: 320px;
+  margin: 30px;
+  border: 1.5px solid $blue;
+
+}
+
+.postal {
+  text-align: center;
+  h2{
+    color: $blue;
+  }
+    width: 400px;
+    height: 400px;
+}
+
+#data-form {
+  margin: 10px 20px
+}
