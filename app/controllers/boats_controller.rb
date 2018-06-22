@@ -3,9 +3,8 @@ class BoatsController < ApplicationController
 
 
   def search_by_city
-    # a = render "../views/pages/info_window"
-    address = params[:city_name]
-    @boats = Boat.near(address, 20)
+    address = params[:address]
+    @boats = Boat.near(address, 2000)
     @markers = @boats.map do |boat|
       authorize boat
       {
