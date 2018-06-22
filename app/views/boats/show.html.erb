@@ -1,13 +1,19 @@
 
-<h1><%=  @boat.name %> </h1>
-<p> Guests: <%= @boat.guests %></p>
-<p> Boat Type: <%= @boat.boat_type %></p>
-<p> Address: <%= @boat.address %></p>
-<p> Description: <%= @boat.description %></p>
-<p> Price: <%= @boat.price_day %></p>
-<%= cl_image_tag(@boat.photo, height: 300, width: 400, crop: :fill) %>
+<div class="banner" id="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @boat.photo, height: 300, width: 400, crop: :fill %>');">
+</div>
 
-<%= link_to "Book it", new_boat_booking_path(@boat)  %>
+<div class="card" id="card-show">
+    <h1 class="card-title"><%=  @boat.name %> </h1>
+  <div id="body-show">
+    <p class="card-text"> Guests: <%= @boat.guests %></p>
+    <p class="card-text"> Boat Type: <%= @boat.boat_type %></p>
+    <p class="card-text"> Address: <%= @boat.address %></p>
+    <p class="card-text"> Description: <%= @boat.description %></p>
+    <p class="card-text"> Price: <%= @boat.price_day %></p>
 
-<%= link_to "Back Home", root_path  %>
+    <%= link_to "Book it", new_boat_booking_path(@boat)%>
+    <%= link_to "Back Home", root_path  %>
+  </div>
+</div>
+
 
